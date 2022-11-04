@@ -1,10 +1,13 @@
 package com.a.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.a.domain.Countries;
 import com.a.domain.User;
 import com.a.service.UserService;
 
@@ -23,15 +26,8 @@ public class UserController {
     public Iterable<User> list() {
         return userService.list();
     }
-   
     @GetMapping("country/{CountryCode}")
-    public Iterable<User>  getUser(@PathVariable String CountryCode) {
-    	if(CountryCode.toUpperCase().equals(CountryCode) && CountryCode.length()==2)
-    	{
-    	return userService.list();
-    	}else {
-    		return null;
-    	}
-    }
+    public List<Object[]> userList (@PathVariable String CountryCode) {
+        return userService.user_jean(CountryCode);}
    
 }

@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,7 +19,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Entity
-@Table(name="user_name")
 public class User {
 	@Id
     @JsonProperty("ID")
@@ -24,9 +26,11 @@ public class User {
 	@JsonProperty("Message")
 	private String message;
 	@JsonProperty("Global")
+	@Embedded
 	private Global global;
-	@ElementCollection
 	@JsonProperty("Countries")
+	@Embedded
+	@ElementCollection
 	private List<Countries> contry;
 	@Column(nullable=false,insertable=false, updatable=false)
 	@JsonProperty("Date")
